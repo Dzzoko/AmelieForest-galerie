@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Détails de la Fresque</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Styles spécifiques pour le carrousel */
+        .carousel {
+            position: relative;
+            max-width: 800px;
+            margin: auto;
+            overflow: hidden; /* Cache les images hors de vue */
+        }
+
+        .carousel-images {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+            width: 100%; /* Assure que chaque image occupe toute la largeur du conteneur */
+        }
+
+        .carousel-images img {
+            flex: 0 0 100%; /* Chaque image occupe 100% de la largeur de la vue */
+            max-height: 400px; /* Définit une hauteur maximale */
+            object-fit: contain; /* Ajuste les images dans leur conteneur */
+        }
+
+        .arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            z-index: 1000;
+        }
+
+        .arrow.left {
+            left: 10px;
+        }
+
+        .arrow.right {
+            right: 10px;
+        }
+
+        .details-description {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="artist-name">Détails de la Fresque</h1>
+    </header>
+
+    <main class="details-container">
+        <section class="painting-details">
+            <!-- Carrousel -->
+            <div class="carousel">
+                <div class="carousel-images">
+                    <img src="image/fresque1.jpg" alt="Fresque image 1">
+                    <img src="image/fresque2.jpg" alt="Fresque image 2">
+                    <img src="image/fresque3.jpg" alt="Fresque image 3">
+                    <img src="image/fresque4.JPG" alt="Fresque image 4">
+                    <img src="image/fresque5.JPG" alt="Fresque image 5">
+                    <img src="image/fresque6.JPG" alt="Fresque image 6">
+                    <img src="image/fresque7.JPG" alt="Fresque image 7">
+                    <img src="image/fresque8.JPG" alt="Fresque image 8">
+                    <img src="image/fresque9.JPG" alt="Fresque image 9">
+                    <img src="image/fresque10.JPG" alt="Fresque image 10">
+                    <img src="image/fresque11.JPG" alt="Fresque image 11">
+                </div>
+                <button class="arrow left" onclick="moveSlide(-1)">&#8249;</button>
+                <button class="arrow right" onclick="moveSlide(1)">&#8250;</button>
+            </div>
+
+            <!-- Description -->
+            <div class="details-description">
+                <h2>Urban Harmony</h2>
+                <a href="index.html" class="btn">Retour à la galerie</a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 Amélie Forest - Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        let currentIndex = 0;
+
+        function moveSlide(direction) {
+            const carousel = document.querySelector('.carousel-images');
+            const images = document.querySelectorAll('.carousel-images img');
+            const totalImages = images.length;
+
+            currentIndex = (currentIndex + direction + totalImages) % totalImages;
+            const offset = -currentIndex * 100; // déplacement en pourcentage basé sur la largeur de l'image
+            carousel.style.transform = `translateX(${offset}%)`;
+        }
+    </script>
+</body>
+</html>
